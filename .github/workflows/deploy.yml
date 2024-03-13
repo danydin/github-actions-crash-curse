@@ -19,7 +19,7 @@ jobs:
     # docker command to build the image from the current dir .
     - run: docker build . -t danydin/nest-app
     # login to dockerhub, the ${{secrets.}} is set up in the secrets in github setting
-    - run: echo "${{secrets.DOCKERHUB_PASSWORD}}" | docker login -u ${{secrets.DOCKERHUB_USERNAME}} --password stdin
+    - run: echo "${{secrets.DOCKERHUB_PASSWORD}}" | docker login -u ${{secrets.DOCKERHUB_USERNAME}} --password-stdin
     # push to dockerhub
     - run: docker push danydin/nest-app
   
