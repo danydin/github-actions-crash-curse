@@ -1,4 +1,4 @@
-name: Dockerizing
+name: Deployment
 
 # this specifies when to run the jobs in the section below, either on push or on pull request
 on:
