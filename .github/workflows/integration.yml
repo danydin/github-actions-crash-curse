@@ -31,28 +31,29 @@ jobs:
     # install all dependencies
     - run: npm i
     - run: npm run build
-# to run the tests the name is arbitary
-unit-tests:
-  # we choose the name , we call it build here becuase we want to build the project
-  build:
-    # the server that the script will run on hosted by github servers
-    runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x, 18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+  # to run the tests the name is arbitary
+  unit-tests:
+    # we choose the name , we call it build here becuase we want to build the project
+    build:
+      # the server that the script will run on hosted by github servers
+      runs-on: ubuntu-latest
 
-    # steps in order to run the job successfully
-    steps:
-    # changing to different branch using actions checkout repo: https://github.com/actions/checkout - instead of reinventing the wheel
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      # to install node on the ubuntu server -  we use the existed public setup from: https://github.com/actions?q=setup
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    # install all dependencies
-    - run: npm i
-    - run: npm run test
+      strategy:
+        matrix:
+          node-version: [14.x, 16.x, 18.x]
+          # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+      # steps in order to run the job successfully
+      steps:
+      # changing to different branch using actions checkout repo: https://github.com/actions/checkout - instead of reinventing the wheel
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        # to install node on the ubuntu server -  we use the existed public setup from: https://github.com/actions?q=setup
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      # install all dependencies
+      - run: npm i
+      - run: npm run test
