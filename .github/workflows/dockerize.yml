@@ -1,0 +1,25 @@
+name: Dockerizing
+
+# this specifies when to run the jobs in the section below, either on push or on pull request
+on:
+  push:
+    branches: [ "master" ]
+
+# this species which jobs to run when the on above happens
+jobs:
+  # a name of the job, we call it whatever we want, we chose build becuase we want to build the project
+  dockerizing:
+    # the server that the script will run on hosted by github servers
+    runs-on: ubuntu-latest
+
+    # steps in order to run the job successfully
+    steps:
+    # checkout into this branch using actions checkout repo: https://github.com/actions/checkout - instead of reinventing the wheel
+    - uses: actions/checkout@v3
+    # docker command to build the image from the current dir .
+    - run: docker build . -t danydin/nest-app
+    # login to dockerhub, the ${{secrets.}} is set up in the secrets in github setting
+    - run: echo "${{secrets.DOCKERHUB_PASSWORD}}" | docker login -u ${{secrets.DOCKERHUB_USERNAME}} --password stdin
+    # push to dockerhub
+    run: docker push danydin/nest-app
+  

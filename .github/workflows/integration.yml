@@ -1,7 +1,7 @@
 name: Integration
 
+# this specifies when to run the jobs in the section below, either on push or on pull request
 on:
-  # this species when to run the jobs in the section below, either on push or on pull request
   push:
     branches: [ "master" ]
   pull_request:
@@ -21,7 +21,7 @@ jobs:
 
     # steps in order to run the job successfully
     steps:
-    # changing to different branch using actions checkout repo: https://github.com/actions/checkout - instead of reinventing the wheel
+    # checkout into this branch using actions checkout repo: https://github.com/actions/checkout - instead of reinventing the wheel
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
       # to install node on the ubuntu server -  we use the existed public setup from: https://github.com/actions?q=setup
