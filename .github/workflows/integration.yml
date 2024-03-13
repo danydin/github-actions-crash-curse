@@ -29,6 +29,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    # the dash is used to specify a list of steps or actions to be performed.
     # install all dependencies
     - run: npm i
     - run: npm run build  
@@ -47,6 +48,7 @@ jobs:
     steps:
     # changing to different branch using actions checkout repo: https://github.com/actions/checkout - instead of reinventing the wheel
     - uses: actions/checkout@v3
+    #  name specifies a human-readable name for the step, and run specifies the command to be executed.
     - name: Use Node.js ${{ matrix.node-version }}
       # to install node on the ubuntu server -  we use the existed public setup from: https://github.com/actions?q=setup
       uses: actions/setup-node@v3
